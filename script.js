@@ -95,9 +95,15 @@ btnScrollTo.addEventListener('click', (e) => {
   //   section1coords.top + window.pageYOffset
   // );
 
-  window.scrollTo({
-    left: section1coords.left + window.pageXOffset, 
-    top: section1coords.top + window.pageYOffset,
-    behavior: 'smooth',
+  //-1
+  // window.scrollTo({
+  //   left: section1coords.left + window.pageXOffset, 
+  //   top: section1coords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+
+  //-2
+  section1.scrollIntoView({
+    behavior: 'smooth'
   });
 })
