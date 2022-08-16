@@ -76,3 +76,28 @@ console.log(logo.getAttribute('src'));
 
 // Classes
 
+// scroll to 
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', (e) => {
+  const section1coords = section1.getBoundingClientRect();
+  
+  console.log(section1coords);
+  console.log(e.target.getBoundingClientRect());
+  console.log('Current scroll (X/Y)', window.pageXOffset , window.pageYOffset);
+  console.log('height/width viewport', document.documentElement.clientHeight, document.documentElement.clientWidth);
+
+  // window.scrollTo(section1coords.left, section1coords.top);
+  
+  // window.scrollTo(
+  //   section1coords.left + window.pageXOffset, 
+  //   section1coords.top + window.pageYOffset
+  // );
+
+  window.scrollTo({
+    left: section1coords.left + window.pageXOffset, 
+    top: section1coords.top + window.pageYOffset,
+    behavior: 'smooth',
+  });
+})
