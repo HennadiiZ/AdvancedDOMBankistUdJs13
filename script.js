@@ -109,18 +109,42 @@ btnScrollTo.addEventListener('click', (e) => {
 })
 
 //page navigation
-const allLinks = document.querySelectorAll('.nav__link');
-allLinks.forEach((link) => {
-  link.addEventListener('click',(e) => {
+// const allLinks = document.querySelectorAll('.nav__link');
+// allLinks.forEach((link) => {
+//   link.addEventListener('click',(e) => {
+//     e.preventDefault();
+//     console.log('click');
+
+//     // const id = this.getAttribute('href');
+//     const id = e.target.getAttribute('href')
+//     console.log(id); //#section--1
+
+//     document.querySelector(id).scrollIntoView({
+//       behavior: 'smooth'
+//     });
+//   })
+// });
+
+//my vers
+// const headerNavv = document.querySelector('.nav');
+// headerNavv.addEventListener('click', (e)=> {
+//   if(e.target.classList.contains('nav__link')) {
+
+//     const id = e.target.getAttribute('href');
+//     document.querySelector(id).scrollIntoView({
+//       behavior: 'smooth'
+//     });
+//   }
+// });
+
+// his vers
+const headerNavv = document.querySelector('.nav__links');
+headerNavv.addEventListener('click', (e)=> {
+  if (e.target.classList.contains('nav__link')) {
     e.preventDefault();
-    console.log('click');
-
-    // const id = this.getAttribute('href');
-    const id = e.target.getAttribute('href')
-    console.log(id); //#section--1
-
+    const id = e.target.getAttribute('href');
     document.querySelector(id).scrollIntoView({
       behavior: 'smooth'
     });
-  })
+  }
 });
