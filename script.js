@@ -45,10 +45,34 @@ message.innerHTML = `
   We use cookies 
   <button class="btn btn--close-cookie">Got it!</button>
   `;
+message.style.background = '#37383d';
+message.style.width = '120%';
+message.style.padding = '10px';
 header.append(message);
 
 const btnCloseCookie = document.querySelector('.btn--close-cookie')
 .addEventListener('click', ()=> {
   // message.parentElement.removeChild(message);
   message.remove();
-})
+});
+
+console.log(getComputedStyle(message));
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height = Number.parseFloat(
+  getComputedStyle(message).height, 10
+) + 30 + 'px';
+
+
+// document.documentElement.style.setProperty('--color-primary', 'red');
+
+// Atributes
+console.log(logo);
+console.log(logo.src);
+console.log(logo.getAttribute('src'));
+
+// Data Atributes
+
+// Classes
+
