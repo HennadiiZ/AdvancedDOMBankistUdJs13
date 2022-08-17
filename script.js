@@ -238,16 +238,47 @@ function opacityOnHover(e) {
 // sticky nav // 196. Implementing a Sticky Navigation: The Scroll Event
 // bad practice for phones& too slow
 
-const initialCoords = section1.getBoundingClientRect();
-console.log(initialCoords);
+// const initialCoords = section1.getBoundingClientRect();
+// console.log(initialCoords);
 
-window.addEventListener('scroll', (e)=> {
-  // console.log(window.scrollY);
-  if (window.scrollY > initialCoords.top) {
+// window.addEventListener('scroll', (e)=> {
+//   // console.log(window.scrollY);
+//   if (window.scrollY > initialCoords.top) {
+//     nav.classList.add('sticky');
+//   } else {
+//     nav.classList.remove('sticky');
+//   }
+// });
+
+// sticky nav // 197. A Better Way: The Intersection Observer API
+// training:
+// const obsCallback = function (entries, observer) {
+//   entries.forEach(entry => {
+//     console.log(entry);
+//   });
+// }
+
+// const obsOptions = {
+//   root: null,
+//   // threshold: 0.1,
+//   threshold: [0, 0.2],
+// }
+
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+// observer.observe(section1);
+
+// const header = document.querySelector('.header');
+
+function stickyNav(entries) {
+  const [entry] = entries;
+  // console.log(entry);
+
+  if (!entry.isIntersecting) {
     nav.classList.add('sticky');
   } else {
     nav.classList.remove('sticky');
   }
-});
+}
 
-
+const headerObserver = new IntersectionObserver(stickyNav , { root: null, threshold: 0 });
+headerObserver.observe(header);
