@@ -182,4 +182,61 @@ tabsContainer.addEventListener('click', (e) => {
   .classList.add('operations__content--active');
 })
 
+// menu fade animation
+
+const nav = document.querySelector('.nav')
+
+// nav.addEventListener('mouseover', (e) => {
+//   if (e.target.classList.contains('nav__link')) {
+//     const link = e.target;
+//     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+//     const logo = link.closest('.nav').querySelector('img');
+
+//     siblings.forEach(el => {
+//       if (el !== link) {
+//         el.style.opacity = .5;
+//       }
+//     });
+//     logo.style.opacity = .5;
+//   }
+// });
+
+// nav.addEventListener('mouseout', (e) => {
+//   if (e.target.classList.contains('nav__link')) {
+//     const link = e.target;
+//     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+//     const logo = link.closest('.nav').querySelector('img');
+
+//     siblings.forEach(el => {
+//       if (el !== link) {
+//         el.style.opacity = 1;
+//       }
+//     });
+//     logo.style.opacity = 1;
+//   }
+// });
+
+nav.addEventListener('mouseover', (e) => {
+  opacityOnHover(.5, e.target);
+});
+
+nav.addEventListener('mouseout', (e) => {
+  opacityOnHover(1, e.target);
+});
+
+function opacityOnHover(opacity, target) {
+  if (target.classList.contains('nav__link')) {
+    const link = target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(el => {
+      if (el !== link) {
+        el.style.opacity = opacity;
+      }
+    });
+    logo.style.opacity = opacity;
+  }
+}
+
 
