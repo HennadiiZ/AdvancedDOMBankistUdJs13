@@ -216,26 +216,22 @@ const nav = document.querySelector('.nav')
 //   }
 // });
 
-nav.addEventListener('mouseover', (e) => {
-  opacityOnHover(.5, e.target);
-});
+nav.addEventListener('mouseover', opacityOnHover.bind(.5))
 
-nav.addEventListener('mouseout', (e) => {
-  opacityOnHover(1, e.target);
-});
+nav.addEventListener('mouseout', opacityOnHover.bind(1));
 
-function opacityOnHover(opacity, target) {
-  if (target.classList.contains('nav__link')) {
-    const link = target;
+function opacityOnHover(e) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
     const logo = link.closest('.nav').querySelector('img');
 
     siblings.forEach(el => {
       if (el !== link) {
-        el.style.opacity = opacity;
+        el.style.opacity = this;
       }
     });
-    logo.style.opacity = opacity;
+    logo.style.opacity = this;
   }
 }
 
