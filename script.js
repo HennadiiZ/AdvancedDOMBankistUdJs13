@@ -280,5 +280,5 @@ function stickyNav(entries) {
   }
 }
 
-const headerObserver = new IntersectionObserver(stickyNav , { root: null, threshold: 0 });
+const headerObserver = new IntersectionObserver(stickyNav , { root: null, threshold: 0, rootMargin: '-90px' });
 headerObserver.observe(header);
