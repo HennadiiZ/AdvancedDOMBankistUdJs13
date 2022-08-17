@@ -56,9 +56,9 @@ const btnCloseCookie = document.querySelector('.btn--close-cookie')
   message.remove();
 });
 
-console.log(getComputedStyle(message));
-console.log(getComputedStyle(message).color);
-console.log(getComputedStyle(message).height);
+// console.log(getComputedStyle(message));
+// console.log(getComputedStyle(message).color);
+// console.log(getComputedStyle(message).height);
 
 message.style.height = Number.parseFloat(
   getComputedStyle(message).height, 10
@@ -148,3 +148,38 @@ headerNavv.addEventListener('click', (e)=> {
     });
   }
 });
+
+// button tabs
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabBtns = document.querySelectorAll('.operations__tab');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', (e) => {
+  // const clicked = e.target;
+  const clicked = e.target.closest('.operations__tab');
+  // console.log(clicked);
+
+  tabBtns.forEach((tab) => {
+    tab.classList.remove('operations__tab--active');
+  })
+
+  if (!clicked) {
+    return;
+  }
+
+  if (clicked) {
+    clicked.classList.add('operations__tab--active');
+  }
+
+  // console.log(clicked.dataset);
+  // console.log(clicked.dataset.tab);
+
+  tabsContent.forEach(c => {
+    c.classList.remove('operations__content--active');
+  });
+
+  document.querySelector(`.operations__content--${clicked.dataset.tab}`)
+  .classList.add('operations__content--active');
+})
+
+
