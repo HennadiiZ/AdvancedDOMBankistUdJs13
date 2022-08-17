@@ -268,6 +268,8 @@ function opacityOnHover(e) {
 // observer.observe(section1);
 
 // const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+console.log(navHeight);
 
 function stickyNav(entries) {
   const [entry] = entries;
@@ -280,5 +282,11 @@ function stickyNav(entries) {
   }
 }
 
-const headerObserver = new IntersectionObserver(stickyNav , { root: null, threshold: 0, rootMargin: '-90px' });
+const headerObserver = new IntersectionObserver(
+  stickyNav , 
+  { 
+    root: null, 
+    threshold: 0, 
+    rootMargin: `-${navHeight}px` }
+);
 headerObserver.observe(header);
