@@ -298,7 +298,7 @@ const allSections = document.querySelectorAll('.section');
 
 function revealSection(entries, observer) {
   const [entry] = entries;
-  console.log(entry);
+  // console.log(entry);
   if (!entry.isIntersecting) {
     return;
   }
@@ -317,4 +317,34 @@ const sectionObserver = new IntersectionObserver(
 allSections.forEach(section => {
   sectionObserver.observe(section);
   section.classList.add('section--hidden');
-})
+});
+
+// 199. Lazy Loading Images
+const imgTargets = document.querySelectorAll('img[data-src]');
+
+function loadImg(entries, observer) {
+  const [entry] = entries;
+  // console.log(entry);
+
+  if (!entry.isIntersecting) {
+    return;
+  }
+
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener('load', () => {
+    entry.target.classList.remove('lazy-img');
+  });
+  observer.unobserve(entry.target);
+}
+
+const imgObserver = new IntersectionObserver(
+  loadImg,
+  {
+    root: null,
+    threshold: 0,
+    rootMargin: '-200px'
+  }
+);
+
+imgTargets.forEach(img => imgObserver.observe(img));
