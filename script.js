@@ -316,7 +316,7 @@ const sectionObserver = new IntersectionObserver(
 
 allSections.forEach(section => {
   sectionObserver.observe(section);
-  // section.classList.add('section--hidden'); //--------------------- --------- --- -----
+  section.classList.add('section--hidden'); //--------------------- --------- --- -----
 });
 
 // 199. Lazy Loading Images
@@ -365,20 +365,22 @@ const slider = document.querySelector('.slider');
 
 btnRight.addEventListener('click', nextSlide); 
 function nextSlide() {
+  curSlide++;
   if (curSlide > slides.length - 1) {
     curSlide = 0;
   }
-  curSlide++;
+  console.log('++', curSlide);
   goToSlide(curSlide);
   activateDot(curSlide); 
 };
 
 btnLeft.addEventListener('click', prevSlide);
 function prevSlide () {
+  curSlide--;
   if (curSlide < 0) {
     curSlide = slides.length - 1;
   }
-  curSlide--;
+  console.log('--', curSlide);
   goToSlide(curSlide);
   activateDot(curSlide); 
 };
@@ -420,7 +422,7 @@ function activateDot(slide) {
   });
 
   document.querySelector(`.dots__dot[data-slide="${slide}"]`)
-  .classList.add('dots__dot--active');
+  .classList.add('dots__dot--active'); //
 }
 activateDot(curSlide);
 
