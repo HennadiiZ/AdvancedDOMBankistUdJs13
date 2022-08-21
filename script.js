@@ -351,31 +351,37 @@ imgTargets.forEach(img => imgObserver.observe(img));
 
 // slider
 // 200. Building a Slider Component: Part 1
+// 201. Building a Slider Component: Part 2
+
 const slides = document.querySelectorAll('.slide');
 const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
-
+const dotContainer = document.querySelector('.dots');
 let curSlide = 0;
 
 const slider = document.querySelector('.slider');
-slider.style.transform = 'scale(0.5)';
+// slider.style.transform = 'scale(0.5)';
 // slider.style.overflow = 'visible';
 
-btnRight.addEventListener('click', () => {
+btnRight.addEventListener('click', nextSlide); 
+function nextSlide() {
   if (curSlide > slides.length - 1) {
     curSlide = 0;
   }
   curSlide++;
   goToSlide(curSlide);
-});
+  activateDot(curSlide); 
+};
 
-btnLeft.addEventListener('click', () => {
+btnLeft.addEventListener('click', prevSlide);
+function prevSlide () {
   if (curSlide < 0) {
     curSlide = slides.length - 1;
   }
   curSlide--;
   goToSlide(curSlide);
-});
+  activateDot(curSlide); 
+};
 
 function goToSlide(slide) {
   slides.forEach(
@@ -385,3 +391,44 @@ function goToSlide(slide) {
   );
 }
 goToSlide(curSlide);
+
+//keybord
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') {
+    nextSlide();
+  } 
+
+  if (e.key === 'ArrowLeft') {
+    prevSlide();
+  } 
+});
+
+//dots 
+function createDots() {
+  slides.forEach((_, i) => {
+   dotContainer.insertAdjacentHTML('beforeend',
+   `<button class="dots__dot" data-slide="${i}"></button>`
+   )
+  });
+}
+createDots();
+
+function activateDot(slide) {
+  document.querySelectorAll('.dots__dot')
+  .forEach(dot => {
+    dot.classList.remove('dots__dot--active');
+  });
+
+  document.querySelector(`.dots__dot[data-slide="${slide}"]`)
+  .classList.add('dots__dot--active');
+}
+activateDot(curSlide);
+
+dotContainer.addEventListener('click', (e) => {
+  if (e.target.classList.contains('dots__dot')) {
+    // const slide = e.target.dataset.slide;
+    const {slide} = e.target.dataset;
+    goToSlide(slide);
+    activateDot(slide); 
+  }
+});
