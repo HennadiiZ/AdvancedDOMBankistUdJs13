@@ -434,3 +434,18 @@ dotContainer.addEventListener('click', (e) => {
     activateDot(slide); 
   }
 });
+
+// 202. Lifecycle DOM Events
+document.addEventListener('DOMContentLoaded', (e) => {
+  console.log(e);
+});
+
+window.addEventListener('load', (e) => {
+  console.log(e);
+});
+
+window.addEventListener('beforeunload', (e) => {
+  console.log(e);
+  e.preventDefault();
+  e.returnValue = '';
+});
