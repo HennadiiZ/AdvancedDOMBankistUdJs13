@@ -449,3 +449,5 @@ window.addEventListener('beforeunload', (e) => {
   e.preventDefault();
   e.returnValue = '';
 });
+
+// 203. Efficient Script Loading: defer and async.
