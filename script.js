@@ -316,7 +316,7 @@ const sectionObserver = new IntersectionObserver(
 
 allSections.forEach(section => {
   sectionObserver.observe(section);
-  section.classList.add('section--hidden');
+  // section.classList.add('section--hidden'); //--------------------- --------- --- -----
 });
 
 // 199. Lazy Loading Images
@@ -348,3 +348,27 @@ const imgObserver = new IntersectionObserver(
 );
 
 imgTargets.forEach(img => imgObserver.observe(img));
+
+// slider
+// 200. Building a Slider Component: Part 1
+const slides = document.querySelectorAll('.slide');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
+
+let curSlide = 0;
+
+const slider = document.querySelector('.slider');
+slider.style.transform = 'scale(0.5)';
+slider.style.overflow = 'visible';
+
+slides.forEach((s, i) => s.style.transform = `translateX(${100 * i}%)`);
+// 0%, 100%, 200%, 300%
+
+btnRight.addEventListener('click', () => {
+  if (curSlide > slides.length - 1) {
+    curSlide = 0;
+  }
+  curSlide++;
+  slides.forEach((s, i) => s.style.transform = `translateX(${100 * (i - curSlide)}%)`);
+  // -100%, 0%, 100%, 200%
+});
