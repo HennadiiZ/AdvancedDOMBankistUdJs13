@@ -359,16 +359,29 @@ let curSlide = 0;
 
 const slider = document.querySelector('.slider');
 slider.style.transform = 'scale(0.5)';
-slider.style.overflow = 'visible';
-
-slides.forEach((s, i) => s.style.transform = `translateX(${100 * i}%)`);
-// 0%, 100%, 200%, 300%
+// slider.style.overflow = 'visible';
 
 btnRight.addEventListener('click', () => {
   if (curSlide > slides.length - 1) {
     curSlide = 0;
   }
   curSlide++;
-  slides.forEach((s, i) => s.style.transform = `translateX(${100 * (i - curSlide)}%)`);
-  // -100%, 0%, 100%, 200%
+  goToSlide(curSlide);
 });
+
+btnLeft.addEventListener('click', () => {
+  if (curSlide < 0) {
+    curSlide = slides.length - 1;
+  }
+  curSlide--;
+  goToSlide(curSlide);
+});
+
+function goToSlide(slide) {
+  slides.forEach(
+    (s, i) => s.style.transform = `
+    translateX(${100 * (i - slide)}%)
+    `
+  );
+}
+goToSlide(curSlide);
